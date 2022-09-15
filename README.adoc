@@ -1,0 +1,74 @@
+= Movies Example Application
+
+How to use Quarkus and Neo4j together.
+
+Neo4j OGM enables convenient integration and object-graph mapping (OGM) in your Quarkus application.
+
+The example project is described in detail on the https://neo4j.com/developer/example-project/[Neo4j Developer Site]
+
+The project uses Java 11.
+
+== The Stack
+
+These are the components of our Web Application:
+
+* Application Type:         Quarkus
+* Persistence Access:       Quarkus-Neo4j-OGM
+* Database:                 Neo4j-Server 3.5, or 4.x with multi-database
+* Frontend:                 jquery, bootstrap, http://d3js.org/[d3.js]
+
+Provision a database quickly with https://sandbox.neo4j.com/?usecase=movies[Neo4j Sandbox] or https://neo4j.com/cloud/aura/[Neo4j Aura].
+
+
+== Building &amp; Running
+
+The project is built via Maven:
+
+----
+mvn package
+----
+
+Additionally, you can execute the integration test, which fires up a local Neo4j instance via Testcontainers:
+
+----
+mvn test-compile failsafe:integration-test failsafe:verify
+----
+
+You run the Quarkus application via executable JAR:
+
+----
+java -jar target/quarkus-app/quarkus-run.jar
+----
+
+Then, the application is available under http://localhost:8080/index.html
+
+Alternatively, you can use Quarkus' development mode:
+
+----
+mvn quarkus:dev
+----
+
+This enables you to edit the Java code while the application keeps running.
+
+
+== Configuration options
+
+The application can be configured via the `src/main/resources/application.properties` file, Java System property, or environment variable.
+A environment variable potentially overrides the corresponding properties value and can be set as follows:
+
+[%header,cols=2*]
+|===
+|Environment variable name
+|Default value (or N/A)
+
+|QUARKUS_NEO4J_URI
+|neo4j+s://demo.neo4jlabs.com
+
+|QUARKUS_NEO4J_AUTHENTICATION_USERNAME
+|movies
+
+|QUARKUS_NEO4J_AUTHENTICATION_PASSWORD
+|movies
+
+|QUARKUS_NEO4J_DATABASE
+|movies
