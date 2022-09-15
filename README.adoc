@@ -6,7 +6,7 @@ Neo4j OGM enables convenient integration and object-graph mapping (OGM) in your 
 
 The example project is described in detail on the https://neo4j.com/developer/example-project/[Neo4j Developer Site]
 
-The project uses Java 11.
+The project uses Java 11 and Quarkus 2.12.2.
 
 == The Stack
 
@@ -14,7 +14,7 @@ These are the components of our Web Application:
 
 * Application Type:         Quarkus
 * Persistence Access:       Quarkus-Neo4j-OGM
-* Database:                 Neo4j-Server 3.5, or 4.x with multi-database
+* Database:                 Neo4j-Server 4.x
 * Frontend:                 jquery, bootstrap, http://d3js.org/[d3.js]
 
 Provision a database quickly with https://sandbox.neo4j.com/?usecase=movies[Neo4j Sandbox] or https://neo4j.com/cloud/aura/[Neo4j Aura].
