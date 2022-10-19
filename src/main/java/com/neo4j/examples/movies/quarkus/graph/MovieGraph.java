@@ -1,4 +1,4 @@
-package com.neo4j.examples.movies.quarkus.movies;
+package com.neo4j.examples.movies.quarkus.graph;
 
 import org.neo4j.ogm.model.Result;
 

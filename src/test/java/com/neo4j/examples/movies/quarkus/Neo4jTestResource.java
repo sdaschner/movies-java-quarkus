@@ -1,4 +1,4 @@
-package com.neo4j.examples.movies.quarkus.movies;
+package com.neo4j.examples.movies.quarkus;
 
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
 import org.testcontainers.containers.Neo4jContainer;
@@ -21,6 +21,11 @@ public class Neo4jTestResource implements QuarkusTestResourceLifecycleManager {
                 "quarkus.neo4j.authentication.username", "neo4j",
                 "quarkus.neo4j.authentication.password", PASSWORD,
                 "quarkus.neo4j.uri", container.getBoltUrl());
+    }
+
+    @Override
+    public void init(Map<String, String> initArgs) {
+        QuarkusTestResourceLifecycleManager.super.init(initArgs);
     }
 
     @Override

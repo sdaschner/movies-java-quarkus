@@ -72,11 +72,15 @@
         </div>
     </div>
 </div>
-<style type="text/css">
+<style>
     .node { stroke: #222; stroke-width: 1.5px; }
     .node.actor { fill: #888; }
     .node.movie { fill: #BBB; }
     .link { stroke: #999; stroke-opacity: .6; stroke-width: 1px; }
+    .table-hover > tbody > tr:hover > td,
+    .table-hover > tbody > tr:hover > th {
+        cursor: pointer;
+    }
 </style>
 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -90,9 +94,19 @@
                         $("#title").text(data.title);
                         $("#poster").attr("src","http://neo4j-documentation.github.io/developer-resources/language-guides/assets/posters/"+encodeURIComponent(data.title)+".jpg");
                         var $list = $("#crew").empty();
-                        data.cast.forEach(function (cast) {
-                            $list.append($("<li>" + cast.name + " " +cast.job + (cast.job == "acted"?" as " + cast.role : "") + "</li>"));
-                        });
+                        if (data.writers.length)
+                            $list.append($("<li>Written by " + data.writers.sort().join(" and ") + "</li>"));
+                        // data.writers.forEach(r => $list.append($("<li>Written by " + p + "</li>")));
+
+                        if (data.directors.length)
+                            $list.append($("<li>Directed by " + data.directors.sort().join(" and ") + "</li>"));
+                        // data.directors.forEach(p => $list.append($("<li>Directed by " + p + "</li>")));
+
+                        if (data.producers.length)
+                            $list.append($("<li>Produced by " + data.producers.sort().join(" and ") + "</li>"));
+                        // data.producers.forEach(p => $list.append($("<li>Produced by " + p + "</li>")));
+                        data.actors.forEach(a => $list.append($("<li>With " + a.actor + " as " + a.roles.sort().join(" and ") + "</li>")));
+                        data.reviewers.forEach(r => $list.append($("<li>Reviewed with " + r.rating + "/100 by " + r.reviewer + ": &ldquo;" + r.review + "&rdquo;</li>")));
                         $("#vote")
                             .unbind("click")
                             .click(function () {
@@ -116,7 +130,7 @@
                                 .click(function() { showMovie($(this).find("td.movie").text());})
                         });
                         if (showFirst) {
-                            showMovie(data[0].movie.title);
+                            showMovie(data[0].title);
                         }
                     }, "json");
             return false;
@@ -145,7 +159,7 @@
 
     d3.json("/graph", function(error, graph) {
 		if (error) return;
-		
+
         force.nodes(graph.nodes).links(graph.links).start();
 
         var link = svg.selectAll(".link")
