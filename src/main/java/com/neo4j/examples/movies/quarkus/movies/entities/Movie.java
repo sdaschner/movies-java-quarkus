@@ -1,6 +1,10 @@
-package com.neo4j.examples.movies.quarkus.movies;
+package com.neo4j.examples.movies.quarkus.movies.entities;
 
 import com.neo4j.examples.movies.quarkus.persons.*;
+import com.neo4j.examples.movies.quarkus.persons.entities.Act;
+import com.neo4j.examples.movies.quarkus.persons.ActsSerializer;
+import com.neo4j.examples.movies.quarkus.persons.entities.Person;
+import com.neo4j.examples.movies.quarkus.persons.entities.Review;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;

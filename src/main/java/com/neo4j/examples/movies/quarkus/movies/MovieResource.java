@@ -1,5 +1,7 @@
 package com.neo4j.examples.movies.quarkus.movies;
 
+import com.neo4j.examples.movies.quarkus.movies.entities.Movie;
+
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

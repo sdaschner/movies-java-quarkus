@@ -1,5 +1,7 @@
 package com.neo4j.examples.movies.quarkus.graph;
 
+import com.neo4j.examples.movies.quarkus.graph.entities.MovieGraph;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

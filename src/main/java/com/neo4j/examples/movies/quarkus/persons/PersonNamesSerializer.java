@@ -1,5 +1,7 @@
 package com.neo4j.examples.movies.quarkus.persons;
 
+import com.neo4j.examples.movies.quarkus.persons.entities.Person;
+
 import javax.json.bind.serializer.JsonbSerializer;
 import javax.json.bind.serializer.SerializationContext;
 import javax.json.stream.JsonGenerator;

@@ -1,5 +1,9 @@
 package com.neo4j.examples.movies.quarkus.persons;
 
+import com.neo4j.examples.movies.quarkus.persons.entities.Act;
+import com.neo4j.examples.movies.quarkus.persons.entities.ActorRecommendation;
+import com.neo4j.examples.movies.quarkus.persons.entities.CoActor;
+import com.neo4j.examples.movies.quarkus.persons.entities.Person;
 import org.neo4j.driver.types.Node;
 import org.neo4j.driver.types.Path;
 import org.neo4j.ogm.model.Result;
@@ -66,10 +70,11 @@ public class Persons {
 
     public List<ActorRecommendation> recommendCoActor(String name) {
         Session session = sessionFactory.openSession();
-        Result result = session.query("MATCH (actor:Person {name: $name})-[:ACTED_IN]->(m)<-[:ACTED_IN]-(coActors),\n" +
-                                      "    (coActors)-[:ACTED_IN]->(m2)<-[:ACTED_IN]-(cocoActors)\n" +
-                                      "  WHERE NOT (actor)-[:ACTED_IN]->()<-[:ACTED_IN]-(cocoActors) AND actor <> cocoActors\n" +
-                                      "  RETURN cocoActors.name AS recommended, count(*) AS strength ORDER BY strength DESC", Map.of("name", name), true);
+        Result result = session.query("MATCH (actor:Person {name: $name})-[:ACTED_IN]->(m)<-[:ACTED_IN]-(coActors), " +
+                                      " (coActors)-[:ACTED_IN]->(m2)<-[:ACTED_IN]-(cocoActors) " +
+                                      " WHERE NOT (actor)-[:ACTED_IN]->()<-[:ACTED_IN]-(cocoActors)" +
+                                      " AND actor <> cocoActors " +
+                                      " RETURN cocoActors.name AS recommended, count(*) AS strength ORDER BY strength DESC", Map.of("name", name), true);
 
         Iterator<Map<String, Object>> iterator = result.iterator();
         List<ActorRecommendation> recommendations = new ArrayList<>();

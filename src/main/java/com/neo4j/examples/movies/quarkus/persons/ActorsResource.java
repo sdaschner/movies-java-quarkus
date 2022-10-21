@@ -1,5 +1,9 @@
 package com.neo4j.examples.movies.quarkus.persons;
 
+import com.neo4j.examples.movies.quarkus.persons.entities.ActorRecommendation;
+import com.neo4j.examples.movies.quarkus.persons.entities.CoActor;
+import com.neo4j.examples.movies.quarkus.persons.entities.Person;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

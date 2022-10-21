@@ -1,6 +1,7 @@
 package com.neo4j.examples.movies.quarkus.movies;
 
 import com.neo4j.examples.movies.quarkus.Neo4jTestResource;
+import com.neo4j.examples.movies.quarkus.movies.entities.Movie;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.BeforeEach;

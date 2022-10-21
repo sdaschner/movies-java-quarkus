@@ -1,6 +1,6 @@
-package com.neo4j.examples.movies.quarkus.persons;
+package com.neo4j.examples.movies.quarkus.persons.entities;
 
-import com.neo4j.examples.movies.quarkus.movies.Movie;
+import com.neo4j.examples.movies.quarkus.movies.entities.Movie;
 import org.neo4j.ogm.annotation.*;
 
 @RelationshipEntity("REVIEWED")

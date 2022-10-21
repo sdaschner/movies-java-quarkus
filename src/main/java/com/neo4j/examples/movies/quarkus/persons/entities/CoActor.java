@@ -1,4 +1,4 @@
-package com.neo4j.examples.movies.quarkus.persons;
+package com.neo4j.examples.movies.quarkus.persons.entities;
 
 public class CoActor {
 

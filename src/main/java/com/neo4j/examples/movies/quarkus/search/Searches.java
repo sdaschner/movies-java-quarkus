@@ -1,6 +1,6 @@
 package com.neo4j.examples.movies.quarkus.search;
 
-import com.neo4j.examples.movies.quarkus.movies.Movie;
+import com.neo4j.examples.movies.quarkus.movies.entities.Movie;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 

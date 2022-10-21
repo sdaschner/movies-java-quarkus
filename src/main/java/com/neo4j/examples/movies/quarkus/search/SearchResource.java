@@ -1,6 +1,6 @@
 package com.neo4j.examples.movies.quarkus.search;
 
-import com.neo4j.examples.movies.quarkus.movies.Movie;
+import com.neo4j.examples.movies.quarkus.movies.entities.Movie;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
