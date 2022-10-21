@@ -4,7 +4,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@Path("movie")
+@Path("movies")
 @Produces(MediaType.APPLICATION_JSON)
 public class MovieResource {
 

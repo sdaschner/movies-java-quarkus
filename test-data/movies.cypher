@@ -506,3 +506,7 @@ CREATE
 
 WITH TomH as a
 MATCH (a)-[:ACTED_IN]->(m)<-[:DIRECTED]-(d) RETURN a,m,d LIMIT 10;
+
+CREATE CONSTRAINT FOR (n:Movie) REQUIRE (n.title) IS UNIQUE;
+CREATE CONSTRAINT FOR (n:Person) REQUIRE (n.name) IS UNIQUE;
+CREATE INDEX FOR (m:Movie) ON (m.released);

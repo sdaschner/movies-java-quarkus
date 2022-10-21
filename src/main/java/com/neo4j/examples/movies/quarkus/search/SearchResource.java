@@ -3,10 +3,7 @@ package com.neo4j.examples.movies.quarkus.search;
 import com.neo4j.examples.movies.quarkus.movies.Movie;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -18,7 +15,7 @@ public class SearchResource {
     Searches searches;
 
     @GET
-    public List<Movie> search(@QueryParam("q") String title) {
+    public List<Movie> search(@QueryParam("q") @DefaultValue("") String title) {
         return searches.searchMoviesByTitle(stripWildcards(title));
     }
 
@@ -31,6 +28,24 @@ public class SearchResource {
             result = result.substring(0, result.length() - 1);
         }
         return result;
+    }
+
+    @GET
+    @Path("latest")
+    public List<Movie> latestMovies() {
+        return searches.latestMovies();
+    }
+
+    @GET
+    @Path("90s-movies")
+    public List<Movie> scenario90sMovies() {
+        return searches.search90sMovies();
+    }
+
+    @GET
+    @Path("tom-hanks-movies")
+    public List<Movie> scenarioTomHanksMovies() {
+        return searches.searchTomHanksMovies();
     }
 
 }
