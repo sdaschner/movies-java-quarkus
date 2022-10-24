@@ -51,6 +51,8 @@ This enables you to edit the Java code while the application keeps running.
 
 === Running Neo4j Database Locally
 
+Per default, the example runs with a generally-available database under https://demo.neo4jlabs.com:7473
+
 You can also run a local Neo4j database with the example project as Docker container. For this, execute the `./run-graph-db.sh` script, and change the Quarkus application properties (`src/main/resources/application.properties`) as follows:
 
 ----
@@ -58,6 +60,8 @@ quarkus.neo4j.uri=bolt://localhost:7687
 quarkus.neo4j.authentication.username=neo4j
 quarkus.neo4j.authentication.password=test
 ----
+
+If you want to run your Neo4j database in a different way, you can also execute the `:guide movies` in your database console, and execute the long Cypher statement to fill your database with the movie data from the second slide of that guide.
 
 
 == Understanding the Examples
