@@ -53,7 +53,7 @@ This enables you to edit the Java code while the application keeps running.
 
 Per default, the example runs with a generally-available database under https://demo.neo4jlabs.com:7473
 
-You can also run a local Neo4j database with the example project as Docker container. For this, execute the `./run-graph-db.sh` script, and change the Quarkus application properties (`src/main/resources/application.properties`) as follows:
+You can also run a local Neo4j database with the example project as Docker container. For this, execute the `./run-graph-db.sh` script, and change the Quarkus application properties under `src/main/resources/application.properties` as follows:
 
 ----
 quarkus.neo4j.uri=bolt://localhost:7687
