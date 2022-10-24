@@ -69,4 +69,21 @@ The different scenarios of finding movies with certain queries and advanced exam
 In order to comprehend how the queries are executed, you can follow the code in the link:src/main/java/com/neo4j/examples/movies/quarkus/movies/MovieResource.java[MovieResource], link:src/main/java/com/neo4j/examples/movies/quarkus/search/SearchResource.java[SearchResource], link:src/main/java/com/neo4j/examples/movies/quarkus/persons/ActorsResource.java[ActorsResource], and link:src/main/java/com/neo4j/examples/movies/quarkus/graph/GraphResource.java[GraphResource] classes.
 
 All JAX-RS resource classes access application-scoped beans, such as link:src/main/java/com/neo4j/examples/movies/quarkus/search/Searches.java[Searches], which access the Neo4j database via OGM `Session`.
-The OGM session is created via `SessionFactory` which can be injected in the classes since we're using the `org.neo4j:neo4j-ogm-quarkus` dependency in our project.
+The OGM session is created via `SessionFactory` which can be injected in the classes since we're using the `org.neo4j:neo4j-ogm-quarkus` dependency in our project:
+
+[source,java]
+----
+@ApplicationScoped
+public class Searches {
+
+    @Inject
+    SessionFactory sessionFactory;
+
+    public List<Movie> searchMoviesByTitle(String title) {
+        Session session = sessionFactory.openSession();
+        Iterable<Movie> iterable = session.query(Movie.class, "MATCH (movie:Movie) WHERE movie.title CONTAINS $title RETURN movie", Map.of("title", title));
+
+        // [...]
+    }
+}
+----
