@@ -19,7 +19,7 @@ public class MovieGraph {
     public MovieGraph() {
     }
 
-    MovieGraph(Result result) {
+    public MovieGraph(Result result) {
         result.forEach(this::addMovieRecord);
     }
 
