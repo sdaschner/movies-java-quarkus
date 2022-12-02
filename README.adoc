@@ -4,7 +4,7 @@ How to use Quarkus and Neo4j OGM together. Neo4j OGM enables convenient integrat
 
 The example project is described in detail on the https://neo4j.com/developer/example-project/[Neo4j Developer Site]
 
-The project uses Java 11 and Quarkus 2.12.2.
+The project uses Java 11 and Quarkus 2.14.2.
 
 == The Stack
 
