@@ -12,10 +12,7 @@ import org.neo4j.ogm.session.SessionFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @ApplicationScoped
 public class Persons {
@@ -54,9 +51,9 @@ public class Persons {
             Map<String, Object> object = iterator.next();
             Path.Segment[] p = (Path.Segment[]) object.get("p");
             for (Path.Segment segment : p) {
-                Node actorNode = segment.relationship().startNodeId() == segment.start().id()
+                Node actorNode = Objects.equals(segment.relationship().startNodeElementId(), segment.start().elementId())
                         ? segment.start() : segment.end();
-                Node movieNode = segment.start().id() == actorNode.id()
+                Node movieNode = Objects.equals(segment.start().elementId(), actorNode.elementId())
                         ? segment.end() : segment.start();
 
                 String actor = actorNode.get("name").asString();

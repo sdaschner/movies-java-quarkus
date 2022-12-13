@@ -13,7 +13,7 @@ import javax.json.bind.annotation.JsonbTypeSerializer;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.neo4j.ogm.annotation.Relationship.INCOMING;
+import static org.neo4j.ogm.annotation.Relationship.Direction.INCOMING;
 
 @NodeEntity
 public class Movie {
