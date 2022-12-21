@@ -18,11 +18,6 @@ public class Movies {
 
     public Movie loadByTitle(String title) {
         Session session = sessionFactory.openSession();
-//        Result result = session.query("MATCH (movie:Movie {title: $title}) " +
-//                                      "OPTIONAL MATCH (person:Person)-[r]->(movie) " +
-//                                      "WITH movie, COLLECT({ name: person.name, job: REPLACE(TOLOWER(TYPE(r)), '_in', ''), role: HEAD(r.roles) }) as cast " +
-//                                      "RETURN movie { .title, cast: cast }"
-
         return session.load(Movie.class, title, 1);
     }
 

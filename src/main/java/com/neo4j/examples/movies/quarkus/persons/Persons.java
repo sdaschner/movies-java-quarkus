@@ -67,20 +67,10 @@ public class Persons {
 
     public List<ActorRecommendation> recommendCoActor(String name) {
         Session session = sessionFactory.openSession();
-        Result result = session.query("MATCH (actor:Person {name: $name})-[:ACTED_IN]->(m)<-[:ACTED_IN]-(coActors), " +
-                                      " (coActors)-[:ACTED_IN]->(m2)<-[:ACTED_IN]-(cocoActors) " +
-                                      " WHERE NOT (actor)-[:ACTED_IN]->()<-[:ACTED_IN]-(cocoActors)" +
-                                      " AND actor <> cocoActors " +
-                                      " RETURN cocoActors.name AS recommended, count(*) AS strength ORDER BY strength DESC", Map.of("name", name), true);
-
-        Iterator<Map<String, Object>> iterator = result.iterator();
-        List<ActorRecommendation> recommendations = new ArrayList<>();
-        while (iterator.hasNext()) {
-            Map<String, Object> object = iterator.next();
-            recommendations.add(new ActorRecommendation((String) object.get("recommended"), (long) object.get("strength")));
-        }
-
-        return recommendations;
+        return session.queryDto(" MATCH (actor:Person {name: $name})-[:ACTED_IN]->(m)<-[:ACTED_IN]-(coActors), " +
+			      " (coActors)-[:ACTED_IN]->(m2)<-[:ACTED_IN]-(cocoActors) " +
+			" WHERE NOT (actor)-[:ACTED_IN]->()<-[:ACTED_IN]-(cocoActors) AND actor <> cocoActors " +
+			" RETURN cocoActors.name AS actor, count(*) AS strength ORDER BY strength DESC", Map.of("name", name), ActorRecommendation.class);
     }
 
     public List<Act> findActs(String name) {
