@@ -91,3 +91,20 @@ public class Searches {
     }
 }
 ----
+
+{nbsp}
+
+Another example is the mapping of arbitrary structures to DTO classes or Java records, as shown in `Persons#recommendCoActor`:
+
+[source,java]
+----
+public List<ActorRecommendation> recommendCoActor(String name) {
+    Session session = sessionFactory.openSession();
+    return session.queryDto(" MATCH (actor:Person {name: $name})- [...] " +
+        " [...] " +
+        " RETURN cocoActors.name AS actor, count(*) AS strength ORDER BY strength DESC",
+        Map.of("name", name), ActorRecommendation.class);
+}
+----
+
+The return type of `queryDto`, here `ActorRecommendation` can either be a simple class, that doesn't need any annotations but does need a public, no-args constructor, or a Java record as it is the case in our example.
