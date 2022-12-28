@@ -4,7 +4,7 @@ How to use Quarkus and Neo4j OGM together. Neo4j OGM enables convenient integrat
 
 The example project is described in detail on the https://neo4j.com/developer/example-project/[Neo4j Developer Site]
 
-The project uses Java 11 and Quarkus 2.14.2.
+The project uses Java 17 and Quarkus 2.14.2.
 
 == The Stack
 
@@ -94,7 +94,7 @@ public class Searches {
 
 {nbsp}
 
-Another example is the mapping of arbitrary structures to DTO classes or Java records, as shown in `Persons#recommendCoActor`:
+Another example is the mapping of arbitrary structures to DTO classes or Java records, as shown in link:src/main/java/com/neo4j/examples/movies/quarkus/persons/Persons.java#L68[Persons]:
 
 [source,java]
 ----
